@@ -1,0 +1,47 @@
+{
+  "author": {
+    "name": "Aoko",
+    "email": "hejunqin233@gmail.com"
+  },
+  "name": "Himawali",
+  "version": "0.0.1",
+  "description": "simple global reactive store with react hooks",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
+    "lint": "tslint 'src/**/*.ts*'",
+    "lint:fix": "tslint --fix 'src/**/*.ts*'"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.23",
+    "cross-env": "^5.2.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
+    "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cross-env lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{ts,tsx}": [
+      "tslint --fix",
+      "git add"
+    ]
+  }
+}
