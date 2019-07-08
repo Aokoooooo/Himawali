@@ -6,7 +6,9 @@
     "object-literal-sort-keys": false,
     "no-implicit-dependencies": false,
     "no-console": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "prefer-conditional-expression": false
   },
+  "include": ["src"],
   "exclude": ["node_modules", "**/*.json"]
 }
