@@ -1,13 +1,6 @@
 import { useSubscribe } from "./hooks";
 import stores from "./stores";
 
-export const defaultHandler = {
-    set(target: any, property: string, value: any) {
-        target[property] = addProxy(value, defaultHandler);
-        return true;
-    },
-};
-
 export const hooksHandler = {
     get(target: any, property: string) {
         if (!stores[property]) {
@@ -18,7 +11,7 @@ export const hooksHandler = {
     },
 };
 
-export const addProxy = (target: any, handler: ProxyHandler<any> = defaultHandler) => {
+export const addProxy = (target: any, handler: ProxyHandler<any>) => {
     if (typeof target !== "object" || target === null) {
         return target;
     }
