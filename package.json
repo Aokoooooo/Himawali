@@ -10,6 +10,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "prepublishOnly": "cross-env node ./scripts/prepublish.js && yarn tsc",
     "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
     "lint": "yarn prettier && tslint --fix 'src/**/*.ts*'"
   },
