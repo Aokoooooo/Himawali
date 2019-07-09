@@ -15,4 +15,4 @@ const deleteDir = path => {
     }
 };
 
-deleteDir("./lib");
+deleteDir("./dist");

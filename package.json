@@ -7,9 +7,10 @@
   "version": "0.0.5",
   "description": "simple global reactive store with react hooks",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepublishOnly": "cross-env node ./scripts/prepublish.js && yarn tsc",
     "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
     "lint": "yarn prettier && tslint --fix 'src/**/*.ts*'"
   },
@@ -42,5 +43,10 @@
       "tslint --fix",
       "git add"
     ]
-  }
+  },
+  "files": [
+    "dist",
+    "src",
+    "scripts"
+  ]
 }
