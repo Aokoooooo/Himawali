@@ -3,7 +3,7 @@
     "name": "Aoko",
     "email": "hejunqin233@gmail.com"
   },
-  "name": "Himawari",
+  "name": "himawari-store",
   "version": "0.0.1",
   "description": "simple global reactive store with react hooks",
   "license": "MIT",
