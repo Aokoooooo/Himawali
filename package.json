@@ -4,7 +4,7 @@
     "email": "hejunqin233@gmail.com"
   },
   "name": "himawari-store",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "simple global reactive store with react hooks",
   "license": "MIT",
   "main": "lib/index.js",
