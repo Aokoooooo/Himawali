@@ -13,9 +13,9 @@ export const hooksHandler = {
     },
 };
 
-export const useStore = () => {
-    return addProxy({}, hooksHandler);
-};
+export const store = addProxy({}, hooksHandler);
+
+export const useStore = () => store;
 
 export const useSubscribe = (name: string) => {
     const [, forceRender] = useReducer<Reducer<number, void>>(s => s + 1, 0);

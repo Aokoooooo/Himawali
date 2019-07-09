@@ -11,8 +11,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
-    "lint": "tslint 'src/**/*.ts*'",
-    "lint:fix": "tslint --fix 'src/**/*.ts*'"
+    "lint": "yarn prettier && tslint --fix 'src/**/*.ts*'"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",

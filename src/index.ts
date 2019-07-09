@@ -1,5 +1,6 @@
 import { createStore, IStoreProps } from "./createStore";
-import { useStore } from "./hooks";
-import stores, { IStore, IStores } from "./stores";
+import { store, useStore } from "./hooks";
+import { IStore, IStores } from "./stores";
 
-export { stores, useStore, createStore, IStore, IStores, IStoreProps };
+export { store, useStore, createStore, IStore, IStores, IStoreProps };
+export default store;
