@@ -1,16 +1,3 @@
-import { useSubscribe } from "./hooks";
-import stores from "./stores";
-
-export const hooksHandler = {
-    get(target: any, property: string) {
-        if (!stores[property]) {
-            throw new Error(`No store named ${property} is existed`);
-        }
-        useSubscribe(property);
-        return stores[property];
-    },
-};
-
 export const addProxy = (target: any, handler: ProxyHandler<any>) => {
     if (typeof target !== "object" || target === null) {
         return target;

@@ -1,24 +1,26 @@
+import { Dispatch } from "react";
+
 interface IObserverQueue {
-    [name: string]: Array<(key: number) => void>;
+    [name: string]: Array<Dispatch<void>>;
 }
+
 const queue: IObserverQueue = {};
-let key = 0;
 
 export const broadcast = (name: string) => {
     if (!queue[name]) {
         return;
     }
-    queue[name].forEach((fn) => fn(key++));
+    queue[name].forEach(fn => fn());
 };
 
-export const subscribe = (name: string, fn: (key: number) => void) => {
+export const subscribe = (name: string, fn: Dispatch<void>) => {
     if (!queue[name]) {
         queue[name] = [];
     }
     queue[name].push(fn);
 };
 
-export const unSubscribe = (name: string, fn: (key: number) => void) => {
+export const unSubscribe = (name: string, fn: Dispatch<void>) => {
     if (!queue[name]) {
         return;
     }
