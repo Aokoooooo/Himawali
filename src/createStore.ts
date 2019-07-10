@@ -1,5 +1,5 @@
 import { broadcast } from "./observable";
-import stores, { IStore } from "./stores";
+import { IStore, stores } from "./stores";
 import { addProxy } from "./utils";
 
 export interface IStoreProps extends IStore {
