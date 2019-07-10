@@ -47,6 +47,8 @@
   "files": [
     "dist",
     "src",
-    "scripts"
+    "LICENSE",
+    "package.json",
+    "readme.md"
   ]
 }
