@@ -1,26 +1,19 @@
-import { Reducer, useEffect, useReducer, useState } from "react";
+import { Reducer, useEffect, useReducer } from "react";
 import { subscribe, unSubscribe } from "./observable";
 import { stores } from "./stores";
 import { addProxy } from "./utils";
 
 export const useStore = () => {
-    const [key, setKey] = useState();
-    useEffect(() => {
-        if (key !== null) {
-            useSubscribe(key);
-            setKey(null);
-        }
-    }, [key]);
     const hooksHandler = {
         get(target: any, property: string) {
             if (!stores[property]) {
                 throw new Error(`No store named ${property} is existed`);
             }
-            setKey(property);
+            useSubscribe(property);
             return stores[property];
         },
     };
-    addProxy({}, hooksHandler);
+    return addProxy({}, hooksHandler);
 };
 
 const useSubscribe = (name: string) => {
