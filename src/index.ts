@@ -4,7 +4,6 @@ if (typeof Proxy === "undefined") {
 
 import { createStore, IStoreProps } from "./createStore";
 import { useStore } from "./hooks";
-import store, { IStore, IStores } from "./stores";
+import stores, { IStore, IStores } from "./stores";
 
-export { store, useStore, createStore, IStore, IStores, IStoreProps };
-export default store;
+export { stores, useStore, createStore, IStore, IStores, IStoreProps };
