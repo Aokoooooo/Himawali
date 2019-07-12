@@ -1,11 +1,18 @@
-import React, { ComponentProps, ComponentType } from "react";
+import React, { ComponentType } from "react";
 import { useStore } from "./hooks";
+import { Store } from "./stores";
 
-export const connect = (WrappedComponent: ComponentType) => (props: ComponentProps<any>) => {
+interface IConnectProps {
+    $$store: Store;
+}
+
+export const connect = (WrappedComponent: ComponentType) => {
     const $$store = useStore();
-    return (
-        <WrappedComponent $$store={$$store} {...props} />
-    )
+    return class extends React.Component<IConnectProps> {
+        public render() {
+            return <WrappedComponent $$store={$$store} {...this.props} />;
+        }
+    };
 };
 
-export default connect
+export default connect;
