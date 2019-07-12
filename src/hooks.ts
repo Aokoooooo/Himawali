@@ -1,9 +1,9 @@
 import { Reducer, useEffect, useReducer } from "react";
 import { subscribe, unSubscribe } from "./observable";
-import { IStores, Store, stores } from "./stores";
+import { IStore, Store, stores } from "./stores";
 import { addProxy } from "./utils";
 
-export const useStore = <T extends IStores>(): Store<T> => {
+export const useStore = <T extends IStore>(): Store<T> => {
     const hooksHandler: ProxyHandler<Store<T>> = {
         get(target: any, property: string) {
             if (!stores[property]) {

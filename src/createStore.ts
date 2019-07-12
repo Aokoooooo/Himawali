@@ -1,8 +1,8 @@
 import { broadcast } from "./observable";
-import { IStoreState, stores } from "./stores";
+import { IStore, stores } from "./stores";
 import { addProxy } from "./utils";
 
-export interface IStoreProps extends IStoreState {
+export interface IStoreProps extends IStore {
     namespace: string;
 }
 
@@ -13,9 +13,9 @@ export const createStore = (props: IStoreProps) => {
     if (Object.keys(stores).includes(namespace)) {
         throw new Error(`namespace ${namespace} is already existed.`);
     }
-    const store: IStoreState = {};
+    const store: IStore = {};
 
-    const defaultHandler: ProxyHandler<IStoreState> = {
+    const defaultHandler: ProxyHandler<IStore> = {
         set(target, property: string, value) {
             if (invalidProps.includes(property) || typeof value === "function") {
                 target[property] = value;

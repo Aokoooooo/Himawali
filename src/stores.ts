@@ -1,15 +1,11 @@
-export interface IStoreState {
+export interface IStore {
     [key: string]: any;
 }
 
-export interface IStores {
-    [namespace: string]: IStoreState;
-}
-
-export type Store<T extends IStores> = {
+export type Store<T> = {
     [K in keyof T]: T[K];
 };
 
-export const stores: Store<IStores> = {};
+export const stores: Store<IStore> = {};
 
 export default stores;

@@ -1,6 +1,6 @@
-import { IStoreState } from "./stores";
+import { IStore } from "./stores";
 
-export const addProxy = <T extends IStoreState>(target: T, handler: ProxyHandler<T>) => {
+export const addProxy = <T extends IStore>(target: T, handler: ProxyHandler<T>) => {
     if (typeof target !== "object" || target === null) {
         return target;
     }
