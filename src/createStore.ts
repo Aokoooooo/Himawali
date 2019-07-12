@@ -6,7 +6,7 @@ export interface IStoreProps extends IStore {
     namespace: string;
 }
 
-const invalidProps = ["stores"];
+const invalidProps: string[] = [];
 
 export const createStore = (props: IStoreProps) => {
     const { namespace, ...rest } = props;
@@ -15,8 +15,8 @@ export const createStore = (props: IStoreProps) => {
     }
     const store: IStore = {};
 
-    const defaultHandler = {
-        set(target: any, property: string, value: any) {
+    const defaultHandler: ProxyHandler<IStore> = {
+        set(target, property: string, value) {
             if (invalidProps.includes(property) || typeof value === "function") {
                 target[property] = value;
                 return true;
@@ -33,10 +33,6 @@ export const createStore = (props: IStoreProps) => {
             throw new Error(`${key} is not valid name as a param`);
         }
         store[key] = addProxy(rest[key], defaultHandler);
-    });
-
-    Object.assign(store, {
-        stores,
     });
 
     stores[namespace] = store;
