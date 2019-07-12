@@ -1,12 +1,12 @@
-export interface IStore {
+export interface IStoreState {
     [key: string]: any;
 }
 
-interface IStores {
-    [namespace: string]: IStore;
+export interface IStores {
+    [namespace: string]: IStoreState;
 }
 
-export type Store<T extends IStores = {}> = {
+export type Store<T extends IStores> = {
     [K in keyof T]: T[K];
 };
 
