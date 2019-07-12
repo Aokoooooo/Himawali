@@ -2,17 +2,19 @@ import React, { ComponentType } from "react";
 import { useStore } from "./hooks";
 import { IStore, Store } from "./stores";
 
-interface IConnectProps<T extends IStore> {
+export interface IConnectProps<T extends IStore> {
     $$store: Store<T>;
 }
 
-export const connect = <T extends IStore>(WrappedComponent: ComponentType) => {
-    const $$store = useStore();
-    return class extends React.Component<IConnectProps<T>> {
-        public render() {
-            return <WrappedComponent $$store={$$store} {...this.props} />;
-        }
+export const connect = <T extends IStore>(mapState: (store: Store<T>) => any) => <P extends object>(
+    WrappedComponent: ComponentType<P>,
+) => {
+    const $$store = useStore<Store<T>>();
+    const result = mapState($$store);
+    const hoc: React.FC<P> = props => {
+        return <WrappedComponent $$store={result} {...(props as P)} />;
     };
+    return hoc;
 };
 
 export default connect;
