@@ -5,7 +5,7 @@ import { addProxy } from "./utils";
 
 export const useStore = <T extends IStore>(): Store<T> => {
     const hooksHandler: ProxyHandler<Store<T>> = {
-        get(target: any, property: string) {
+        get(target: Store<T>, property: string) {
             if (!stores[property]) {
                 throw new Error(`No store named ${property} is existed`);
             }
