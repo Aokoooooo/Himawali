@@ -7,4 +7,4 @@ import { createStore, IStoreProps } from "./createStore";
 import { useStore } from "./hooks";
 import store, { IStore, Store } from "./stores";
 
-export { store, useStore, createStore, IStore, IStoreProps, Store, connect, IConnectProps };
+export { store, useStore, createStore, IStore, IStoreProps, IConnectProps, Store, connect };
