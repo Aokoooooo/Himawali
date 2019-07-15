@@ -13,7 +13,12 @@ export const createStore = (props: IStoreProps) => {
     if (Object.keys(stores).includes(namespace)) {
         throw new Error(`namespace ${namespace} is already existed.`);
     }
-    const store: IStore = {};
+    const store: IStore = rest;
+    invalidProps.map(i => {
+        if (typeof store[i] !== "undefined") {
+            throw new Error(`${i} is not valid name as a param`);
+        }
+    });
 
     const defaultHandler: ProxyHandler<IStore> = {
         set(target, property: string, value) {
@@ -28,12 +33,6 @@ export const createStore = (props: IStoreProps) => {
             return true;
         },
     };
-    Object.keys(rest || {}).map(key => {
-        if (typeof rest[key] !== "undefined" && invalidProps.includes(key)) {
-            throw new Error(`${key} is not valid name as a param`);
-        }
-        store[key] = addProxy(rest[key], defaultHandler);
-    });
 
     stores[namespace] = addProxy(store, defaultHandler);
 };
