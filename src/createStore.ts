@@ -35,5 +35,5 @@ export const createStore = (props: IStoreProps) => {
         store[key] = addProxy(rest[key], defaultHandler);
     });
 
-    stores[namespace] = store;
+    stores[namespace] = addProxy(store, defaultHandler);
 };
