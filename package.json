@@ -10,18 +10,26 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "jest": "jest",
     "prepublishOnly": "cross-env node ./scripts/prepublish.js && yarn tsc",
     "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
     "lint": "cross-env yarn prettier && tslint --fix 'src/**/*.ts*'"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.15",
     "@types/react": "^16.8.23",
+    "babel-jest": "^24.8.0",
     "cross-env": "^5.2.0",
     "husky": "^3.0.0",
+    "jest": "^24.8.0",
     "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.2"

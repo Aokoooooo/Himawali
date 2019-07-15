@@ -1,5 +1,5 @@
 import { broadcast } from "./observable";
-import { IStore, stores } from "./stores";
+import { IStore, store } from "./stores";
 import { addProxy } from "./utils";
 
 export interface IStoreProps extends IStore {
@@ -10,12 +10,12 @@ const invalidProps: string[] = [];
 
 export const createStore = (props: IStoreProps) => {
     const { namespace, ...rest } = props;
-    if (Object.keys(stores).includes(namespace)) {
+    if (Object.keys(store).includes(namespace)) {
         throw new Error(`namespace ${namespace} is already existed.`);
     }
-    const store: IStore = rest;
+    const newStore: IStore = rest;
     invalidProps.map(i => {
-        if (typeof store[i] !== "undefined") {
+        if (typeof newStore[i] !== "undefined") {
             throw new Error(`${i} is not valid as a property name`);
         }
     });
@@ -34,5 +34,5 @@ export const createStore = (props: IStoreProps) => {
         },
     };
 
-    stores[namespace] = addProxy(store, defaultHandler);
+    store[namespace] = addProxy(newStore, defaultHandler);
 };
