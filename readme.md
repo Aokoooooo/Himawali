@@ -18,7 +18,7 @@
 - `useStore`
   这个 API 使用了`react hooks`,所以请确保你的项目依赖的`react`版本大于 16.8.6,并且只可以在函数组件中调用它.方法会返回`Store`实例.当你修改他内部的值时,页面会自动重新渲染.
 - `connect`
-  对于类组件,无法使用`useStore`,那么可以使用`connect`方法,通过高阶组件的形式,包裹这个类组件.`connect`只有一个入参`mapState(store => f(store))`,作用和`react-redux`中的`connect`类似,但是需要注意的有两点:
+  对于类组件,无法使用`useStore`,那么可以使用`connect`方法,通过高阶组件的形式,包裹这个类组件.`connect`只有一个入参`mapState(store => f(store))`,作用和`react-redux`中的`connect`类似,但是需要注意的有三点:
   1. 不可以为`null`
   2. 返回值中不可以包含`store`对象.
      因为`store`对象的获取源于`useStore`这个方法,这个`hook`只能在函数组件中调用.
@@ -35,10 +35,12 @@
 1. 增加 chrome 插件,在开发环境中直接查看/修改`stores`状态
 2. 优化&&修 bug
 
-### PR||issue
+### issues & PR
 
 如果你对这个项目有任务的建议/想法,欢迎提 issue 或者发邮件给我(hejunqin233@gmail.com).
+
 如果你想参与这个项目,欢迎提 pr.
+
 如果你对这个项目感兴趣,不妨给个 star 鼓励一下.
 
 蟹蟹,happy coding~~~
