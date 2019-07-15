@@ -1,14 +1,11 @@
-import { addProxy, hooksHandler } from "./utils";
-
 export interface IStore {
     [key: string]: any;
 }
 
-export interface IStores {
-    [namespace: string]: IStore;
-}
+export type Store<T> = {
+    [K in keyof T]: T[K];
+};
 
-export const stores: IStores = {};
+export const stores: Store<IStore> = {};
 
-const store = addProxy({}, hooksHandler);
-export default store;
+export default stores;

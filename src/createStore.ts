@@ -6,17 +6,22 @@ export interface IStoreProps extends IStore {
     namespace: string;
 }
 
-const invalidProps = ["stores"];
+const invalidProps: string[] = [];
 
 export const createStore = (props: IStoreProps) => {
     const { namespace, ...rest } = props;
     if (Object.keys(stores).includes(namespace)) {
         throw new Error(`namespace ${namespace} is already existed.`);
     }
-    const store: IStore = {};
+    const store: IStore = rest;
+    invalidProps.map(i => {
+        if (typeof store[i] !== "undefined") {
+            throw new Error(`${i} is not valid as a property name`);
+        }
+    });
 
-    const defaultHandler = {
-        set(target: any, property: string, value: any) {
+    const defaultHandler: ProxyHandler<IStore> = {
+        set(target, property: string, value) {
             if (invalidProps.includes(property) || typeof value === "function") {
                 target[property] = value;
                 return true;
@@ -28,16 +33,6 @@ export const createStore = (props: IStoreProps) => {
             return true;
         },
     };
-    Object.keys(rest || {}).map(key => {
-        if (typeof rest[key] !== "undefined" && invalidProps.includes(key)) {
-            throw new Error(`${key} is not valid name as a param`);
-        }
-        store[key] = addProxy(rest[key], defaultHandler);
-    });
 
-    Object.assign(store, {
-        stores,
-    });
-
-    stores[namespace] = store;
+    stores[namespace] = addProxy(store, defaultHandler);
 };

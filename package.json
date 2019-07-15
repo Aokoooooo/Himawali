@@ -21,13 +21,18 @@
     "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.2"
   },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "husky": {
     "hooks": {
