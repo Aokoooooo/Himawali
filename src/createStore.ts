@@ -16,7 +16,7 @@ export const createStore = (props: IStoreProps) => {
     const store: IStore = rest;
     invalidProps.map(i => {
         if (typeof store[i] !== "undefined") {
-            throw new Error(`${i} is not valid name as a param`);
+            throw new Error(`${i} is not valid as a property name`);
         }
     });
 
