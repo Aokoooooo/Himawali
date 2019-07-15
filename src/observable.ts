@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 
 interface IObserverQueue {
-    [name: string]: Array<Dispatch<void>>;
+    [name: string]: Set<Dispatch<void>>;
 }
 
 const queue: IObserverQueue = {};
@@ -15,17 +15,16 @@ export const broadcast = (name: string) => {
 
 export const subscribe = (name: string, fn: Dispatch<void>) => {
     if (!queue[name]) {
-        queue[name] = [];
+        queue[name] = new Set<Dispatch<void>>();
     }
-    queue[name].push(fn);
+    queue[name].add(fn);
 };
 
 export const unSubscribe = (name: string, fn: Dispatch<void>) => {
     if (!queue[name]) {
         return;
     }
-    const index = queue[name].indexOf(fn);
-    if (index !== -1) {
-        queue[name].splice(index, 1);
+    if (queue[name].has(fn)) {
+        queue[name].delete(fn);
     }
 };
