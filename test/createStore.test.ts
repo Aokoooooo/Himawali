@@ -18,11 +18,8 @@ describe("createStore", () => {
         expect(doCreate).toThrow("namespace test is already existed.");
     });
     test('getStore "test"', () => {
-        const testGetStore = () => {
-            const { test } = getStore<IInitTestValue>();
-            return test;
-        };
-        expect(testGetStore()).toEqual(initTestValue);
+        const { test } = getStore<IInitTestValue>();
+        expect(test).toEqual(initTestValue);
     });
     test("updateStore", () => {
         const setTestValueAs2 = () => {
