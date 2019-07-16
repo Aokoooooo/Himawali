@@ -27,7 +27,7 @@
   1. 不可以为`null`
   2. 返回值中不可以包含`store`对象.
      因为`store`对象的获取源于`useStore`这个方法,这个`hook`只能在函数组件中调用.
-  3. `mapState`的结果将放在`this.props.$$store`中.
+  3. `mapState`的结果将放在`this.props.$store`中.
 
 - `getStore`
   如果想在`Component`以外的地方获取`store`中的数据(不需要刷新 UI),直接`const store = getStore<T>()`即可.需要注意的是,修改`store`中的数据,也会刷新订阅了这些数据的组件.

@@ -3,7 +3,7 @@ import { useStore } from "./hooks";
 import { IStore, Store } from "./stores";
 
 export interface IConnectProps<T extends any> {
-    $$store: T;
+    $store: T;
 }
 
 export const connect = <T extends IStore>(mapState: (store: Store<T>) => any) => <P extends object>(
@@ -15,7 +15,7 @@ export const connect = <T extends IStore>(mapState: (store: Store<T>) => any) =>
         if (result === store) {
             throw new Error(`"mapState()" can't return the store itself`);
         }
-        return <WrappedComponent $$store={result} {...(props as P)} />;
+        return <WrappedComponent $store={result} {...(props as P)} />;
     };
     return hoc;
 };
