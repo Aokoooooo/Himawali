@@ -1,7 +1,8 @@
 import { broadcast } from "./observable";
-import { IStore, store } from "./stores";
+import { getStore, IStore } from "./stores";
 import { addProxy } from "./utils";
 
+const store = getStore();
 export interface IStoreProps extends IStore {
     namespace: string;
 }
