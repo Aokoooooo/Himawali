@@ -3,6 +3,9 @@ import { getStore } from "../src/stores";
 
 const initTestValue = {
     test: 1,
+    func() {
+        console.log("old");
+    },
 };
 interface IInitTestValue {
     test: typeof initTestValue;
@@ -22,12 +25,14 @@ describe("createStore", () => {
         expect(test).toEqual(initTestValue);
     });
     test("updateStore", () => {
-        const setTestValueAs2 = () => {
-            const store = getStore<IInitTestValue>();
-            store.test.test = 2;
-            return store.test.test;
+        const { test } = getStore<IInitTestValue>();
+        test.test = 2;
+        expect(test.test).toEqual(2);
+        const newFunc = () => {
+            console.log("new");
         };
-        expect(setTestValueAs2()).toEqual(2);
+        test.func = newFunc;
+        expect(test.func).toEqual(newFunc);
     });
     afterAll(() => {
         let store = getStore();
