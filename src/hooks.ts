@@ -1,7 +1,9 @@
 import { Reducer, useEffect, useReducer } from "react";
 import { subscribe, unSubscribe } from "./observable";
-import { IStore, Store, store } from "./stores";
+import { getStore, IStore, Store } from "./stores";
 import { addProxy } from "./utils";
+
+const store = getStore();
 
 export const useStore = <T extends IStore>(): Store<T> => {
     const hooksHandler: ProxyHandler<Store<T>> = {

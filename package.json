@@ -11,9 +11,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "jest": "jest",
-    "prepublishOnly": "cross-env node ./scripts/prepublish.js && yarn tsc",
     "prettier": "prettier --write src/**/*.{js,ts,tsx,json}",
-    "lint": "cross-env yarn prettier && tslint --fix 'src/**/*.ts*'"
+    "lint": "cross-env yarn prettier && tslint --fix 'src/**/*.ts*'",
+    "prepublishOnly": "cross-env node ./scripts/prepublish.js && yarn tsc"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -44,7 +44,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "cross-env lint-staged"
+      "pre-commit": "cross-env lint-staged",
+      "pre-push": "yarn jest"
     }
   },
   "lint-staged": {
