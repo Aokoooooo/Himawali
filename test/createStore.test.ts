@@ -9,13 +9,20 @@ interface IInitTestValue {
 }
 
 describe("createStore", () => {
-    test("creatStore test", () => {
+    test('creatStore "test"', () => {
         const doCreate = () => createStore({ namespace: "test", ...initTestValue });
         expect(doCreate()).toEqual(undefined);
     });
     test('namespace "test" already existed', () => {
         const doCreate = () => createStore({ namespace: "test", ...initTestValue });
         expect(doCreate).toThrow("namespace test is already existed.");
+    });
+    test('getStore "test"', () => {
+        const testGetStore = () => {
+            const { test } = getStore<IInitTestValue>();
+            return test;
+        };
+        expect(testGetStore()).toEqual(initTestValue);
     });
     test("updateStore", () => {
         const setTestValueAs2 = () => {
@@ -24,5 +31,9 @@ describe("createStore", () => {
             return store.test.test;
         };
         expect(setTestValueAs2()).toEqual(2);
+    });
+    afterAll(() => {
+        let store = getStore();
+        store = {};
     });
 });
